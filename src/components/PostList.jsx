@@ -37,13 +37,11 @@ export async function PostList({ currentPage = 1, searchParams }) {
   //    OFFSET ${POSTS_PER_PAGE * (currentPage - 1)}`);
 
   if (searchOrder.sort === "desc") {
-    posts.rows.sort((a, b) => {
-      return b.id - a.id;
-    });
-  } else if (posts.sort === "asc") {
-    posts.rows.sort((a, b) => {
-      return a.id - b.id;
-    });
+    orderBy = "didit_posts.id";
+    sortDir = "DESC";
+  } else if (searchOrder.sort === "asc") {
+    orderBy = "didit_posts.id";
+    sortDir = "ASC";
   } else if (searchOrder.sort === "votedesc") {
     orderBy = "vote_total";
     sortDir = "DESC";
