@@ -6,8 +6,6 @@ import { POSTS_PER_PAGE } from "@/config";
 
 //! searchParams was one of my edits. Remove it if things go awry
 export async function PostList({ currentPage = 1, searchParams }) {
-  const voteTotal = "vote_total";
-  const sortOrder = "didit_posts.id";
   // Default ordering criteria
   let orderBy = "didit_posts.id";
   let sortDir = "DESC";
