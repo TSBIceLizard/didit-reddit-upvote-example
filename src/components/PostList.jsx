@@ -4,7 +4,10 @@ import { Vote } from "./Vote";
 import { db } from "@/db";
 import { POSTS_PER_PAGE } from "@/config";
 
-export async function PostList({ currentPage = 1 }) {
+//! searchParams was one of my edits
+
+export async function PostList({ currentPage = 1, searchParams }) {
+  const searchOrder = await searchParams;
   const { rows: posts } =
     await db.query(`SELECT didit_posts.id, didit_posts.title, didit_posts.body, didit_posts.created_at, users.name, 
     COALESCE(SUM(votes.vote), 0) AS vote_total
@@ -15,6 +18,16 @@ export async function PostList({ currentPage = 1 }) {
      ORDER BY vote_total DESC
      LIMIT ${POSTS_PER_PAGE}
      OFFSET ${POSTS_PER_PAGE * (currentPage - 1)}`);
+
+  if (searchOrder.sort === "desc") {
+    posts.rows.sort((a, b) => {
+      return b.id - a.id;
+    });
+  } else if (posts.sort === "asc") {
+    posts.rows.sort((a, b) => {
+      return a.id - b.id;
+    });
+  }
 
   return (
     <>
