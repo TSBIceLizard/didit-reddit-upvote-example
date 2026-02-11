@@ -17,32 +17,20 @@ The project is a work in progress and is not yet complete.
 - [x] Nested comments (recursive lists)
 - [x] User authentication
 
-## Setup instructions
+### Debug assignment
 
-1. Fork the repository (check "copy the main branch only") and clone your fork to your local machine
-2. Run `npm install`
-3. Create a `.env.local` file in the root directory and add the following environment variables:
-   - `DATABASE_URL` - the URL of your Postgres database (eg. the Supabase connection string)
-   - `AUTH_SECRET` - the Next Auth secret string (this can be anything at all like a password, but keep it secret!)
-   - `AUTH_GITHUB_ID` - the GitHub OAuth client ID (create yours in [Github developer settings](https://github.com/settings/developers))
-   - `AUTH_GITHUB_SECRET` - the GitHub OAuth client secret (create this in [Github developer settings](https://github.com/settings/developers))
-4. Create the database schema by running the SQL commands in `schema.sql` in your database (eg. by running the commands in Supabase Query Editor)
-5. Run `npm run dev` to start the development server
-6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the site
+Getting the project deployed was quite straightforward, there were some issues rooted in the SQL schema but those were easily resolved.
 
-## Potential future features
+I tested all of the core features to make sure they all function accordingly and I couldn't detect any problems.
 
-- [ ] User profiles
-- [ ] Sorting posts by recent (date posted), top (most upvotes), and most controversial (most upvotes _and_ downvotes)
-- [ ] User karma scores
-- [ ] User badges / trophies (awards for achievements like number of posts, years on the site, etc.)
-- [ ] User settings (eg. number of posts per page, theme, etc.)
-- [ ] Moderation tools / reporting or flagging objectionable comments for removable by admins
-- [ ] Searching posts (possibly using simple SQL LIKE '%some search%', or [Postgres text search](https://www.crunchydata.com/blog/postgres-full-text-search-a-search-engine-in-a-database))
-- [ ] Subreddits (separate communities, that isn't just one big list of posts, that can be created by users)
-- [ ] User notifications
-- [ ] User private messaging
-- [ ] User blocking
-- [ ] User following
-- [ ] User feed (posts from users you follow)
-- [ ] User flair
+### Stretch goals:
+
+I attempted to tackle the stretch goals but in separate branches (which I deployed in vercel), though I didn't have success getting those functioning. Firstly I tried to tackle the potential feature of sorting posts by different types by both ASC and DESC, and this didn't work as I'd expected. Debugging with Vercel wasn't greatly helpful as it didn't really provide much detailed error information, only that the PostList.jsx failed to render (wasn't more specific than that).
+
+In doing this, I see that SQL queries can potentially be used to handle much more complex sorting and it does give me inspiration for the things I can do later down the line. In my week-08 or 9 assignment I used a much more convoluted way to sort messages and in retrospect it could be better to do this directly with a more customized SQL query.
+
+If you check my repo on Github, you'll might see what I attempted to do with the sorting posts branch.
+
+Don't have much more feedback on this assignment than that.
+
+## Thanks for reading!
